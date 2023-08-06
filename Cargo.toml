@@ -3,4 +3,5 @@ members = [
     "bits",
     "robotpilot",
     "index",
+    "turing",
 ]

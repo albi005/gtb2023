@@ -13,3 +13,7 @@ version = "0.1.0"
 [[package]]
 name = "robotpilot"
 version = "0.1.0"
+
+[[package]]
+name = "turing"
+version = "0.1.0"
