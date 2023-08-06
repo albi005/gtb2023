@@ -1,7 +1,6 @@
 [package]
-name = "robotpilot"
+name = "bits"
 version = "0.1.0"
-authors = ["Albert Ragány-Németh <me@alb1.hu>"]
 edition = "2015"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
