@@ -29,27 +29,33 @@ fn main() {
     println!();
 }
 
+fn to_char(i: usize) -> char {
+    (i + 'A' as usize) as u8 as char
+}
+
+fn to_index(c: char) -> usize {
+    c as usize - 'A' as usize
+}
+
 struct Rotor {
     permutation: [char; 26],
-    inverse: [char; 26],
     position: usize,
 }
 
 impl Rotor {
     fn new(permutation: &str) -> Self {
-        let mut inverse = ['A'; 26];
-        for (i, c) in permutation.chars().enumerate() {
-            inverse[c as usize - 'A' as usize] = (i as u8 + 'A' as u8) as char;
-        }
-        Self {
-            permutation: permutation.chars().collect::<Vec<_>>().try_into().unwrap(),
-            inverse,
+        let mut rotor = Self {
+            permutation: ['A'; 26],
             position: 0,
+        };
+        for (i, c) in permutation.chars().enumerate() {
+            rotor.permutation[i] = c;
         }
+        rotor
     }
 
     fn forward(&self, input: char) -> char {
-        let mut index = input as usize - 'A' as usize;
+        let mut index = to_index(input);
         index = (index + self.position) % 26;
         self.permutation[index]
     }
@@ -62,10 +68,10 @@ impl Rotor {
 
         let mut inverse = ['A'; 26];
         for (i, c) in rotated_permutation.iter().enumerate() {
-            inverse[*c as usize - 'A' as usize] = (i as u8 + 'A' as u8) as char;
+            inverse[to_index(*c)] = to_char(i);
         }
 
-        let index = input as usize - 'A' as usize;
+        let index = to_index(input);
         inverse[index]
     }
 
